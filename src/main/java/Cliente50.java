@@ -12,19 +12,9 @@ class Cliente50 {
     }
     void iniciar() {
         new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        mTcpClient = new TCPClient50("127.0.0.1",
-                                new TCPClient50.OnMessageReceived() {
-                                    @Override
-                                    public void messageReceived(String message) {
-                                        ClienteRecibe(message);
-                                    }
-                                }
-                        );
-                        mTcpClient.run();
-                    }
+                () -> {
+                    mTcpClient = new TCPClient50("127.0.0.1", message -> ClienteRecibe(message));
+                    mTcpClient.run();
                 }
         ).start();
         //---------------------------
@@ -60,14 +50,6 @@ class Cliente50 {
         }
     }
 
-    double funcion(int fin) {
-        double sum = 0;
-        for (int j = 0; j <= fin; j++) {
-            sum = sum + Math.sin(j * Math.random());
-        }
-        return sum;
-    }
-
     void procesar(String polinomio, double a, double b, int cantidad, int rango) {
 
         int numIntervalos = (int) (((b-a)*cantidad)/rango);
@@ -96,7 +78,7 @@ class Cliente50 {
         }
         double sumatotal = 0;
         for (int i = 0; i < H; i++) {
-            System.out.println(sum[i]);
+
             sumatotal = sumatotal + sum[i];
         }
 
@@ -121,7 +103,7 @@ class Cliente50 {
             for (double i = min; i < max; i=i+dx) {
                 Polinomio polinomio = new Polinomio(this.polinomio,i);
                 suma += polinomio.imprimirCoeficientes();
-                System.out.println("SUMAAAAAAA: "+ suma);
+
             }
             sum[id] = suma;
             System.out.println(" min:" + min + " max:" + (max ) + " id:" + id + " suma:" + (suma));
