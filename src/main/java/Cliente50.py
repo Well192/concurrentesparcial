@@ -124,6 +124,7 @@ class Cliente50:
             
             sumatotal += sumaarray[i]
 
+        print(sumatotal*dx)
         self.ClienteEnvia("rpta " + str(sumatotal * dx))
 
 class tarea0101(threading.Thread):

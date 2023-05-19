@@ -36,8 +36,6 @@ public class Polinomio {
 
             resultado += coeficientes[i] * Math.pow(x, i);
         }
-
-        System.out.println(resultado);
         return resultado;
     }
 

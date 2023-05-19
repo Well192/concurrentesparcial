@@ -81,7 +81,7 @@ class Cliente50 {
 
             sumatotal = sumatotal + sum[i];
         }
-
+        System.out.println(sumatotal*dx);
         ClienteEnvia("rpta " + sumatotal*dx);
     }
     public class tarea0101 extends Thread {
@@ -107,7 +107,7 @@ class Cliente50 {
             }
             sum[id] = suma;
             System.out.println(" min:" + min + " max:" + (max ) + " id:" + id + " suma:" + (suma));
-            // envio 7x^1+8x^2 5 10 1000
+            // envio 7x^1+8x^2 5 10 200
         }
     }
 
