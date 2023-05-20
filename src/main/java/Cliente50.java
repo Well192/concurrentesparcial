@@ -102,7 +102,7 @@ class Cliente50 {
 
             for (double i = min; i < max; i=i+dx) {
                 Polinomio polinomio = new Polinomio(this.polinomio,i);
-                suma += polinomio.imprimirCoeficientes();
+                suma += polinomio.evaluando_en_polinomio();
 
             }
             sum[id] = suma;

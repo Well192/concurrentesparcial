@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Polinomio {
@@ -6,10 +7,10 @@ public class Polinomio {
     public Polinomio(String polinomio, double numero) {
 
 
-        x = numero;
+         x = numero;
 
         // Dividir el polinomio en términos individuales
-        String[] terminos = polinomio.split("\\s*\\+\\s*|\\s*\\-\\s*");
+        String[] terminos = polinomio.split("(?=[+-])");
 
         // Determinar el grado máximo del polinomio
         int gradoMaximo = 0;
@@ -25,22 +26,24 @@ public class Polinomio {
         for (String termino : terminos) {
             double coeficiente = obtenerCoeficiente(termino);
             int grado = obtenerGrado(termino);
-            coeficientes[grado] = coeficiente;
+            coeficientes[grado] += coeficiente;
         }
     }
 
-    public double imprimirCoeficientes() {
+    public double evaluando_en_polinomio() {
         double resultado = 0.;
 
         for (int i = 0; i < coeficientes.length; i++) {
-
+            System.out.println(coeficientes[i]);
             resultado += coeficientes[i] * Math.pow(x, i);
         }
         return resultado;
     }
 
     private double obtenerCoeficiente(String termino) {
+
         String coeficienteStr = termino.split("x")[0];
+
         if (coeficienteStr.isEmpty()) {
             return 1.0;
         } else if (coeficienteStr.equals("-")) {
@@ -62,16 +65,19 @@ public class Polinomio {
     }
 
     public static void main(String[] args) {
-        double x=5;
+
         double dx= (double) (10-5)/200;
         double respuesta = 0;
         for(double i=5+6*dx; i < 5+12*dx;  i = i+dx ){ // 200 intervalos
-            Polinomio polinomio = new Polinomio("7x^1+8x^2",i);
-            respuesta += polinomio.imprimirCoeficientes();
+            Polinomio polinomio = new Polinomio("7x^1-8x^2",i);
+            respuesta += polinomio.evaluando_en_polinomio();
 
         }
 
         System.out.println("La respuesta es: "+(respuesta ));
+
+
+
 
     }
 }

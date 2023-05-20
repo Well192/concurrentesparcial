@@ -1,4 +1,5 @@
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Servidor50 {
@@ -49,26 +50,27 @@ public class Servidor50 {
         System.out.println("SERVIDOR40 El mensaje:" + llego);
         if (llego != null && !llego.equals("")) {
             if (llego.trim().contains("rpta")) {
-                String[] arrString = llego.split("\\s+");
+                String[] arrString = llego.split("(?=[+-])");
+
                 double data = Double.parseDouble(arrString[1]);
-                if (data > 0) {
-                    rptacli[contarcliente] = data;
-                    System.out.println("i:" + contarcliente + " rptacli[i]" + rptacli[contarcliente]);
-                    System.out.println("Llego el servidor: " + data);
-                    System.out.println("Ellos son:" + this.mTcpServer.nrcli);//cuantos clientes son
-                    contarcliente = contarcliente + 1; //incremento un cliente
 
-                    if (contarcliente == this.mTcpServer.nrcli) {
-                        for (int i = 0; i < contarcliente; i++) {
-                            System.out.println("ya   i:" + i + " rptacli[i]" + rptacli[i]);
-                            sumclient = sumclient + rptacli[i];
+                rptacli[contarcliente] = data;
+                System.out.println("i:" + contarcliente + " rptacli[i]" + rptacli[contarcliente]);
+                System.out.println("Llego el servidor: " + data);
+                System.out.println("Ellos son:" + this.mTcpServer.nrcli);//cuantos clientes son
+                contarcliente = contarcliente + 1; //incremento un cliente
 
-                        }
-                        System.out.println("LA RESPUESTA TOTAL ES:" + sumclient);
-                        contarcliente = 0;
-                        sumclient = 0;
+                if (contarcliente == this.mTcpServer.nrcli) {
+                    for (int i = 0; i < contarcliente; i++) {
+                        System.out.println("ya   i:" + i + " rptacli[i]" + rptacli[i]);
+                        sumclient = sumclient + rptacli[i];
 
                     }
+                    System.out.println("LA RESPUESTA TOTAL ES:" + sumclient);
+                    contarcliente = 0;
+                    sumclient = 0;
+
+
                 }
             }
         }
